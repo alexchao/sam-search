@@ -28,10 +28,11 @@ class DocResult extends Component {
 
 class Search extends Component {
     render() {
+        const hits = this.props.hideResults ? null : (<Hits hitComponent={DocResult} />);
         return (
             <div className="container">
                 <SearchBox translations={{ placeholder: "trump, chomsky, etc." }} />
-                <Hits hitComponent={DocResult} />
+                {hits}
             </div>
         );
     }
@@ -39,17 +40,30 @@ class Search extends Component {
 
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { hideResults: true };
+    }
+
+    handleSearchStateChanged(nextSearchState) {
+        this.setState({
+            hideResults: nextSearchState.query.trim() === ''
+        });
+    }
+
     render() {
         return (
             <InstantSearch
              appId="QJS5T5ILOZ"
              apiKey="7ce9db2eaabc449095a16ab0396f4319"
-             indexName="sam_text">
+             indexName="sam_text"
+             onSearchStateChange={(n) => { this.handleSearchStateChanged(n); }}>
                 <Configure
                  snippetEllipsisText="..."
                  attributesToRetrieve={['id', 'title', 'static_uri']}
                  attributesToHighlight={[]} />
-                <Search />
+                <Search hideResults={this.state.hideResults} />
             </InstantSearch>
         );
     }
