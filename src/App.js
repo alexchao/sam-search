@@ -28,11 +28,25 @@ class DocResult extends Component {
 
 class Search extends Component {
     render() {
-        const hits = this.props.hideResults ? null : (<Hits hitComponent={DocResult} />);
+        let hits = null;
+        if (!this.props.hideResults) {
+            hits = (
+                <div id="hits-section">
+                    <div id="hits-container">
+                        <Hits hitComponent={DocResult} />
+                    </div>
+                </div>
+            );
+        }
         return (
-            <div className="container">
-                <SearchBox translations={{ placeholder: "trump, chomsky, etc." }} />
-                {hits}
+            <div id="page-container">
+                <div id="search-bar">
+                    <div id="search-box-container">
+                        <SearchBox translations={{ placeholder: "trump, chomsky, etc." }} />
+                    </div>
+                    {hits}
+                </div>
+                <div id="page-body"></div>
             </div>
         );
     }
