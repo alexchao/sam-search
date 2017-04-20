@@ -12,3 +12,20 @@ body {
 	font-variant: small-caps;
 	margin: 0 0 0 0.5em;
 }
+
+.ais-SearchBox__root {
+	margin: 0 0 1em;
+}
+
+.hit-container {
+	margin: 0 0 1em;
+}
+
+.hit-container h3 {
+	margin: 0 0 0.5em;
+}
+
+.hit-container .snippet {
+	margin: 0;
+	line-height: 150%;
+}

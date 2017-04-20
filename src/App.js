@@ -8,14 +8,14 @@ import {InstantSearch, Configure, Hits, SearchBox, Snippet} from 'react-instants
 class DocResult extends Component {
     render() {
         return (
-            <div>
+            <div className="hit-container">
                 <h3>
                     {this.props.hit.title}
                     <a
                      className="view-link"
                      href={this.props.hit.static_uri}>view</a>
                 </h3>
-                <p>
+                <p className="snippet">
                     <span className="hit-name">
                         <Snippet attributeName="content" hit={this.props.hit} />
                     </span>
@@ -30,7 +30,7 @@ class Search extends Component {
     render() {
         return (
             <div className="container">
-                <SearchBox />
+                <SearchBox translations={{ placeholder: "trump, chomsky, etc." }} />
                 <Hits hitComponent={DocResult} />
             </div>
         );
