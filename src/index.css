@@ -1,8 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  background-color: #e0e0e0;
+  font-family: system-ui;
+  background-color: #f0f0f0;
+}
+
+/* override theme declaration */
+.ais-InstantSearch__root {
+	font-family: system-ui;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #7b8ca0;
+}
+
+a:hover, a:active, a:focus {
+	text-decoration: underline;
 }
 
 #page-container {
@@ -43,11 +57,11 @@ body {
 	margin: 2em 0;
 	padding: 1em;
 	background-color: #fff;
-	box-shadow: 0 3px 3px 0 rgba(85,95,110,.2);
+	box-shadow: 0 2px 5px 0 rgba(85,95,110,.4);
+	border-top: 6px solid #7b8ca0;
 	max-width: 600px;
 	max-height: 500px;
 	overflow-y: auto;
-	opacity: 0.95;
 }
 
 .hit-container {
