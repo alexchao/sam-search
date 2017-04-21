@@ -5,15 +5,27 @@ import './App.css';
 import {InstantSearch, Configure, Hits, SearchBox, Snippet} from 'react-instantsearch/dom';
 
 
+const Util = (function() {
+    const makeStaticUri = function(docId) {
+        return 'transcripts/' + docId + '.html';
+    };
+    return {
+        makeStaticUri: makeStaticUri
+    }
+})();
+
+
 class DocResult extends Component {
     render() {
+        const staticUri = Util.makeStaticUri(this.props.hit.id);
         return (
             <div className="hit-container">
                 <h3>
                     {this.props.hit.title}
                     <a
                      className="view-link"
-                     href={this.props.hit.static_uri}>view</a>
+                     onClick={(e) => {this.props.handleLinkClick(e);}}
+                     href={staticUri}>view</a>
                 </h3>
                 <p className="snippet">
                     <span className="hit-name">
@@ -27,13 +39,33 @@ class DocResult extends Component {
 
 
 class Search extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { pageContent: null };
+    }
+
+    handleLinkClick(e) {
+        e.preventDefault();
+        const uri = e.target;
+        const that = this;
+        fetch(uri).then(function(response) {
+            return response.text();
+        }).then(function(htmlBlob) {
+            that.setState({ pageContent: htmlBlob });
+        });
+        this.props.appHandleLinkClick();
+    }
+
     render() {
         let hits = null;
         if (!this.props.hideResults) {
             hits = (
                 <div id="hits-section">
                     <div id="hits-container">
-                        <Hits hitComponent={DocResult} />
+                        <Hits hitComponent={
+                            ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
+                         } />
                     </div>
                 </div>
             );
@@ -46,7 +78,8 @@ class Search extends Component {
                     </div>
                     {hits}
                 </div>
-                <div id="page-body"></div>
+                // derp
+                <div id="page-body" dangerouslySetInnerHTML={{__html: this.state.pageContent }}></div>
             </div>
         );
     }
@@ -66,6 +99,10 @@ class App extends Component {
         });
     }
 
+    appHandleLinkClick() {
+        this.setState({ hideResults: true });
+    }
+
     render() {
         return (
             <InstantSearch
@@ -77,7 +114,7 @@ class App extends Component {
                  snippetEllipsisText="..."
                  attributesToRetrieve={['id', 'title', 'static_uri']}
                  attributesToHighlight={[]} />
-                <Search hideResults={this.state.hideResults} />
+                <Search hideResults={this.state.hideResults} appHandleLinkClick={this.appHandleLinkClick.bind(this)} />
             </InstantSearch>
         );
     }
