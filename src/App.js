@@ -24,6 +24,7 @@ class DocResult extends Component {
                     {this.props.hit.title}
                     <a
                      className="view-link"
+                     data-chunk-id={this.props.hit.chunk_id}
                      onClick={(e) => {this.props.handleLinkClick(e);}}
                      href={staticUri}>view</a>
                 </h3>
@@ -45,14 +46,36 @@ class Search extends Component {
         this.state = { pageContent: null };
     }
 
+    setScrollToMatch(chunkId) {
+        const chunkEl = document.getElementById('chunk-' + chunkId);
+
+        // try to move the element into view from behind the search bar
+        // TODO: do a more precise calculation using viewport height and
+        // element height
+        let verticalOffset = chunkEl.offsetTop - parseInt(chunkEl.offsetHeight / 2);
+        window.scroll(0, verticalOffset);
+
+        const initClassName = chunkEl.className;
+        chunkEl.className = initClassName + ' content-highlight';
+
+        // reset the class name after the highlight animation has finisehd
+        // so that future searches can still highlight this element
+        window.setTimeout(function() {
+            chunkEl.className = initClassName;
+        }, 4000);
+    }
+
     handleLinkClick(e) {
         e.preventDefault();
         const uri = e.target;
+        const chunkId = e.target.dataset.chunkId;
+
         const that = this;
         fetch(uri).then(function(response) {
             return response.text();
         }).then(function(htmlBlob) {
             that.setState({ pageContent: htmlBlob });
+            that.setScrollToMatch(chunkId);
         });
         this.props.appHandleLinkClick();
     }
@@ -112,9 +135,11 @@ class App extends Component {
              onSearchStateChange={(n) => { this.handleSearchStateChanged(n); }}>
                 <Configure
                  snippetEllipsisText="..."
-                 attributesToRetrieve={['id', 'title', 'static_uri']}
+                 attributesToRetrieve={['id', 'title', 'chunk_id']}
                  attributesToHighlight={[]} />
-                <Search hideResults={this.state.hideResults} appHandleLinkClick={this.appHandleLinkClick.bind(this)} />
+                <Search
+                 hideResults={this.state.hideResults}
+                 appHandleLinkClick={this.appHandleLinkClick.bind(this)} />
             </InstantSearch>
         );
     }

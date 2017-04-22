@@ -78,3 +78,28 @@ a:hover, a:active, a:focus {
 	font-size: small;
 	line-height: 150%;
 }
+
+@-webkit-keyframes fadeIt {
+  0%   { background-color: #c0d0e0; }
+  100% { background-color: #f0f0f0; }
+}
+@-moz-keyframes fadeIt {
+  0%   { background-color: #c0d0e0; }
+  100% { background-color: #f0f0f0; }
+}
+@-o-keyframes fadeIt {
+  0%   { background-color: #c0d0e0; }
+  100% { background-color: #f0f0f0; }
+}
+@keyframes fadeIt {
+  0%   { background-color: #c0d0e0; }
+  100% { background-color: #f0f0f0; }
+}
+
+.content-highlight{    
+    background-image:none !important;
+    -webkit-animation: fadeIt 3s ease-out; 
+       -moz-animation: fadeIt 3s ease-out; 
+         -o-animation: fadeIt 3s ease-out; 
+            animation: fadeIt 3s ease-out; 
+}
