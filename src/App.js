@@ -51,7 +51,9 @@ class Search extends Component {
 
         // try to move the element into view from behind the search bar
         const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-        let verticalOffset = chunkEl.offsetTop - parseInt(viewportHeight / 2);
+        let verticalOffset = chunkEl.offsetTop;
+        verticalOffset -= parseInt(viewportHeight / 2, 10);
+        verticalOffset += parseInt(chunkEl.offsetHeight / 2, 10);
         window.scroll(0, verticalOffset);
 
         const initClassName = chunkEl.className;
