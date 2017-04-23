@@ -40,15 +40,29 @@ a:hover, a:active, a:focus {
 }
 
 #page-body {
-	padding: 6em 0 0;
+	padding: 7em 0 0;
+}
+
+.transcript-container {
+	padding: 3em;
+	background-color: #FFFBEE;
+	border-top: 1px solid #FFFDF6;
+	border-left: 1px solid #FFFDF6;
+	box-shadow: 0 2px 5px 0 rgba(85,95,110,.4);
+	color: #74716A;
+}
+
+.transcript-container h1 {
+	color: #B4AE97;
+}
+
+.transcript-container p {
+	 line-height: 150%;
 }
 
 .view-link {
 	font-variant: small-caps;
 	margin: 0 0 0 0.5em;
-}
-
-.ais-SearchBox__root {
 }
 
 #hits-container {
@@ -60,6 +74,7 @@ a:hover, a:active, a:focus {
 	background-color: #fff;
 	box-shadow: 0 2px 5px 0 rgba(85,95,110,.4);
 	border-top: 6px solid #7b8ca0;
+	border-radius: 5px;
 	max-width: 600px;
 	max-height: 400px;
 	overflow-y: auto;
