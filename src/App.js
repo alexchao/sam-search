@@ -52,7 +52,8 @@ class Search extends Component {
         // try to move the element into view from behind the search bar
         // TODO: do a more precise calculation using viewport height and
         // element height
-        let verticalOffset = chunkEl.offsetTop - parseInt(chunkEl.offsetHeight / 2);
+        const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        let verticalOffset = chunkEl.offsetTop - parseInt(viewportHeight / 2);
         window.scroll(0, verticalOffset);
 
         const initClassName = chunkEl.className;
@@ -97,7 +98,7 @@ class Search extends Component {
             <div id="page-container">
                 <div id="search-bar">
                     <div id="search-box-container">
-                        <SearchBox translations={{ placeholder: "trump, chomsky, etc." }} />
+                        <SearchBox translations={{ placeholder: "trump, liberals, etc." }} />
                     </div>
                     {hits}
                 </div>

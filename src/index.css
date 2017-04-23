@@ -53,6 +53,7 @@ a:hover, a:active, a:focus {
 
 #hits-container {
 	position: absolute;
+	left: 10%;
 	width: 75%;
 	margin: 2em 0;
 	padding: 1em;
@@ -60,7 +61,7 @@ a:hover, a:active, a:focus {
 	box-shadow: 0 2px 5px 0 rgba(85,95,110,.4);
 	border-top: 6px solid #7b8ca0;
 	max-width: 600px;
-	max-height: 500px;
+	max-height: 400px;
 	overflow-y: auto;
 }
 
