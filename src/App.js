@@ -86,10 +86,18 @@ class Search extends Component {
         if (!this.props.hideResults) {
             hits = (
                 <div id="hits-section">
-                    <div id="hits-container">
-                        <Hits hitComponent={
-                            ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
-                         } />
+                    <div id="hits-box">
+                        <div id="hits-container">
+                            <Hits hitComponent={
+                                ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
+                             } />
+                        </div>
+                        <div id="search-footer-container">
+                            <span id="search-footer">
+                                powered by
+                                <a href="https://www.algolia.com/"><img src={process.env.PUBLIC_URL + '/img/algolia.svg'} height="17" width="54" /></a>
+                            </span>
+                        </div>
                     </div>
                 </div>
             );
