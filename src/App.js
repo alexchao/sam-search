@@ -123,7 +123,7 @@ class Search extends Component {
                         <div id="search-footer-container">
                             <span id="search-footer">
                                 powered by
-                                <a href="https://www.algolia.com/"><img src={process.env.PUBLIC_URL + '/img/algolia.svg'} height="17" width="54" /></a>
+                                <a href="https://www.algolia.com/"><img alt="Algolia logo" src={process.env.PUBLIC_URL + '/img/algolia.svg'} height="17" width="54" /></a>
                             </span>
                         </div>
                     </div>
