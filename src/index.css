@@ -30,9 +30,57 @@ a:hover, a:active, a:focus {
 	box-shadow: 0 1px 1px 0 rgba(85,95,110,.2);
 }
 
-#search-box-container, #page-body, #hits-section {
+#search-box-container, #page-body, #hits-section, .info-box-container {
 	width: 75%;
 	margin: 0 auto;
+}
+
+.ais-SearchBox__root {
+	float: left;
+}
+
+#search-box-container .header-container {
+	float: left;
+	color: #9faab2;
+	padding: 0.7em 0em 0em 1em;
+}
+
+#search-box-container h1 {
+	display: inline;
+	font-size: 120%;
+	font-weight: normal;
+}
+
+#search-box-container h1 em {
+	font-weight: bold;
+	color: #627787;
+}
+
+#search-box-container .more-info-link {
+	margin: 0 0 0 1em;
+}
+
+
+#search-box-container .more-info-link a {
+	font-weight: bold;
+}
+
+.info-box-container {
+	position: relative;
+}
+
+.info-box {
+	position: absolute;
+	top: 2em;
+	padding: 0 2em;
+}
+
+.info-box h3 {
+	color: #9faab2;
+}
+
+.info-box p {
+	line-height: 150%;
 }
 
 #hits-section {
@@ -61,7 +109,7 @@ a:hover, a:active, a:focus {
 }
 
 .transcript-container p {
-	 line-height: 150%;
+	line-height: 150%;
 }
 
 .view-link {
@@ -78,10 +126,6 @@ a:hover, a:active, a:focus {
 	padding: 0 0 2em;
 	max-width: 600px;
 	max-height: 350px;
-	background-color: #fff;
-	box-shadow: 0 2px 5px 0 rgba(85,95,110,.4);
-	border-top: 6px solid #7b8ca0;
-	border-radius: 5px;
 }
 
 #hits-container {
@@ -156,4 +200,23 @@ a:hover, a:active, a:focus {
        -moz-animation: fadeIt 3s ease-out; 
          -o-animation: fadeIt 3s ease-out; 
             animation: fadeIt 3s ease-out; 
+}
+
+.group:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.pop-up {
+	background-color: #fff;
+	box-shadow: 0 2px 5px 0 rgba(85,95,110,.4);
+	border-top: 6px solid #7b8ca0;
+	border-radius: 5px;
+}
+
+.pop-up-button {
+	text-align: right;
+	font-variant: small-caps;
+	font-weight: bold;
 }

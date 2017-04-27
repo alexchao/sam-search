@@ -39,11 +39,42 @@ class DocResult extends Component {
 }
 
 
+class InfoBox extends Component {
+    render() {
+        return (
+            <div className="info-box-container">
+                <div className="info-box pop-up">
+                    <h3>About This App</h3>
+                    <p>Most of the transcripts here have been generated directly from <em><a href="https://www.samharris.org/podcast">Waking Up</a></em> podcast audio data using Google's <a href="https://cloud.google.com/speech/">Cloud Speech API</a>. The speech recognition technology &mdash; while powerful &mdash; is imperfect; the transcripts found here include numerous errors and lack punctuation, and are unable to distinguish between when Sam is speaking in his own words or quoting someone else. Literal reading of these trancripts is difficult, and so they should only be used as reference material.</p>
+                    <p>Currently, only those podcasts where Sam is speaking alone (without a guest) have been transcribed.</p>
+                    <p>See this project on <a href="https://github.com/alexchao/sam-search">GitHub</a>.</p>
+                    <p className="pop-up-button"><a href="#" onClick={(e) => {this.props.handleCloseInfoClick(e);}}>CLOSE</a></p>
+                </div>
+            </div>
+        );
+    }
+}
+
+
 class Search extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { pageContent: null };
+        this.state = {
+            pageContent: null,
+            showInfoBox: false
+        };
+    }
+
+    handleCloseInfoClick(e) {
+        e.preventDefault();
+        this.setState({ showInfoBox: false });
+    }
+
+    handleOpenInfoClick(e) {
+        e.preventDefault();
+        this.props.handleHideResults();
+        this.setState({ showInfoBox: true });
     }
 
     setScrollToMatch(chunkId) {
@@ -78,15 +109,16 @@ class Search extends Component {
             that.setState({ pageContent: htmlBlob });
             that.setScrollToMatch(chunkId);
         });
-        this.props.appHandleLinkClick();
+        this.props.handleHideResults();
     }
 
     render() {
-        let hits = null;
+        let hits = null, infoBox = null;
         if (!this.props.hideResults) {
+            {/* TODO: Move into its own component */}
             hits = (
                 <div id="hits-section">
-                    <div id="hits-box">
+                    <div id="hits-box" className="pop-up">
                         <div id="hits-container">
                             <Hits hitComponent={
                                 ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
@@ -102,16 +134,28 @@ class Search extends Component {
                 </div>
             );
         }
+
+        if (this.state.showInfoBox) {
+            infoBox = (<InfoBox handleCloseInfoClick={this.handleCloseInfoClick.bind(this)} />);
+        }
+
         return (
             <div id="page-container">
                 <div id="search-bar">
-                    <div id="search-box-container">
+                    <div id="search-box-container" className="group">
                         <SearchBox translations={{ placeholder: "trump, liberals, etc." }} />
+                        <div className="header-container">
+                            <h1>
+                                Search <em>Waking Up</em> transcripts
+                            </h1>
+                            <span className="more-info-link">( <a href="#" onClick={(e) => {this.handleOpenInfoClick(e);}}>?</a> )</span>
+                        </div>
                     </div>
                     {hits}
+                    {infoBox}
                 </div>
                 {/* derp */}
-                <div id="page-body" dangerouslySetInnerHTML={{__html: this.state.pageContent }}></div>
+                <div id="page-body" dangerouslySetInnerHTML={{__html: this.state.pageContent }} />
             </div>
         );
     }
@@ -131,7 +175,7 @@ class App extends Component {
         });
     }
 
-    appHandleLinkClick() {
+    handleHideResults() {
         this.setState({ hideResults: true });
     }
 
@@ -148,7 +192,7 @@ class App extends Component {
                  attributesToHighlight={[]} />
                 <Search
                  hideResults={this.state.hideResults}
-                 appHandleLinkClick={this.appHandleLinkClick.bind(this)} />
+                 handleHideResults={this.handleHideResults.bind(this)} />
             </InstantSearch>
         );
     }
