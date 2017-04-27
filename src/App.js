@@ -60,21 +60,18 @@ class Search extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            pageContent: null,
-            showInfoBox: false
-        };
+        this.state = { pageContent: null };
     }
 
     handleCloseInfoClick(e) {
         e.preventDefault();
-        this.setState({ showInfoBox: false });
+        this.props.handleCloseInfoBox();
     }
 
     handleOpenInfoClick(e) {
         e.preventDefault();
         this.props.handleHideResults();
-        this.setState({ showInfoBox: true });
+        this.props.handleShowInfoBox();
     }
 
     setScrollToMatch(chunkId) {
@@ -114,8 +111,7 @@ class Search extends Component {
 
     render() {
         let hits = null, infoBox = null;
-        if (!this.props.hideResults) {
-            {/* TODO: Move into its own component */}
+        if (this.props.showResults) {
             hits = (
                 <div id="hits-section">
                     <div id="hits-box" className="pop-up">
@@ -135,7 +131,7 @@ class Search extends Component {
             );
         }
 
-        if (this.state.showInfoBox) {
+        if (this.props.showInfoBox) {
             infoBox = (<InfoBox handleCloseInfoClick={this.handleCloseInfoClick.bind(this)} />);
         }
 
@@ -166,17 +162,29 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { hideResults: true };
+        this.state = {
+            showResults: false,
+            showInfoBox: false
+        };
+    }
+
+    handleCloseInfoBox() {
+        this.setState({ showInfoBox: false });
+    }
+
+    handleShowInfoBox() {
+        this.setState({ showInfoBox: true });
     }
 
     handleSearchStateChanged(nextSearchState) {
         this.setState({
-            hideResults: nextSearchState.query.trim() === ''
+            showResults: nextSearchState.query.trim() !== '',
+            showInfoBox: false
         });
     }
 
     handleHideResults() {
-        this.setState({ hideResults: true });
+        this.setState({ showResults: false });
     }
 
     render() {
@@ -189,10 +197,15 @@ class App extends Component {
                 <Configure
                  snippetEllipsisText="..."
                  attributesToRetrieve={['id', 'title', 'chunk_id']}
-                 attributesToHighlight={[]} />
+                 attributesToHighlight={[]}
+                 />
                 <Search
-                 hideResults={this.state.hideResults}
-                 handleHideResults={this.handleHideResults.bind(this)} />
+                 showResults={this.state.showResults}
+                 showInfoBox={this.state.showInfoBox}
+                 handleHideResults={this.handleHideResults.bind(this)}
+                 handleCloseInfoBox={this.handleCloseInfoBox.bind(this)}
+                 handleShowInfoBox={this.handleShowInfoBox.bind(this)}
+                 />
             </InstantSearch>
         );
     }
