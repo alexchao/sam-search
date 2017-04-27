@@ -110,7 +110,7 @@ class Search extends Component {
                     </div>
                     {hits}
                 </div>
-                // derp
+                {/* derp */}
                 <div id="page-body" dangerouslySetInnerHTML={{__html: this.state.pageContent }}></div>
             </div>
         );
