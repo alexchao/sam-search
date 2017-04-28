@@ -45,8 +45,9 @@ class InfoBox extends Component {
             <div className="info-box-container">
                 <div className="info-box pop-up">
                     <h3>About This App</h3>
-                    <p>Most of the transcripts here have been generated directly from <strong>Sam Harris</strong>'s <em><a href="https://www.samharris.org/podcast">Waking Up</a></em> podcast audio data using Google's <a href="https://cloud.google.com/speech/">Cloud Speech API</a>. The speech recognition technology &mdash; while powerful &mdash; is imperfect; these transcripts contain numerous errors, lack punctuation, and do not distinguish between when Sam is speaking in his own words and quoting someone else. They do not lend themselves to literal reading, and are only intended to make it easier to explore podcast content.</p>
-                    <p>Currently, due to limitations in the speech recognition API, only those podcasts where Sam is speaking alone (without a guest) have been transcribed.</p>
+                    <p>This app contains transcripts of episodes from <strong>Sam Harris</strong>'s <em><a href="https://www.samharris.org/podcast">Waking Up</a></em> podcast.</p>
+                    <p>Most of these transcripts have been generated directly from the original audio using Google's <a href="https://cloud.google.com/speech/">Cloud Speech API</a>. The speech recognition technology &mdash; while powerful &mdash; is imperfect; these transcripts contain numerous errors, lack punctuation, and do not distinguish between when Sam is speaking in his own words and quoting someone else. They do not lend themselves to literal reading, and are only intended to make it easier to explore podcast content.</p>
+                    <p>Currently, because the API does not differentiate between the voices of multiple speakers, I've only transcribed those podcasts where Sam is speaking alone (without a guest).</p>
                     <p>See this project on <a href="https://github.com/alexchao/sam-search">GitHub</a>. This app is neither endorsed by nor affiliated with Sam Harris.</p>
                     <p className="pop-up-button"><a href="#" onClick={(e) => {this.props.handleCloseInfoClick(e);}}>CLOSE</a></p>
                 </div>
@@ -87,7 +88,7 @@ class Search extends Component {
         const initClassName = chunkEl.className;
         chunkEl.className = initClassName + ' content-highlight';
 
-        // reset the class name after the highlight animation has finisehd
+        // reset the class name after the highlight animation has finished
         // so that future searches can still highlight this element
         window.setTimeout(function() {
             chunkEl.className = initClassName;
