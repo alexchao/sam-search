@@ -47,7 +47,7 @@ class InfoBox extends Component {
                     <h3>About This App</h3>
                     <p>Most of the transcripts here have been generated directly from <strong>Sam Harris</strong>'s <em><a href="https://www.samharris.org/podcast">Waking Up</a></em> podcast audio data using Google's <a href="https://cloud.google.com/speech/">Cloud Speech API</a>. The speech recognition technology &mdash; while powerful &mdash; is imperfect; the transcripts found here include numerous errors and lack punctuation, and are unable to distinguish between when Sam is speaking in his own words or quoting someone else. Literal reading of these trancripts is difficult, and so they should only be used as reference material.</p>
                     <p>Currently, only those podcasts where Sam is speaking alone (without a guest) have been transcribed.</p>
-                    <p>See this project on <a href="https://github.com/alexchao/sam-search">GitHub</a>. This app is neither endorsed by or affiliated with Sam Harris.</p>
+                    <p>See this project on <a href="https://github.com/alexchao/sam-search">GitHub</a>. This app is neither endorsed by nor affiliated with Sam Harris.</p>
                     <p className="pop-up-button"><a href="#" onClick={(e) => {this.props.handleCloseInfoClick(e);}}>CLOSE</a></p>
                 </div>
             </div>
