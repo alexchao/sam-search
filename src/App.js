@@ -45,9 +45,9 @@ class InfoBox extends Component {
             <div className="info-box-container">
                 <div className="info-box pop-up">
                     <h3>About This App</h3>
-                    <p>This app contains transcripts of episodes from <strong>Sam Harris</strong>'s <em><a href="https://www.samharris.org/podcast">Waking Up</a></em> podcast.</p>
-                    <p>Most of these transcripts have been generated directly from the original audio using Google's <a href="https://cloud.google.com/speech/">Cloud Speech API</a>. The speech recognition technology &mdash; while powerful &mdash; is imperfect; these transcripts contain numerous errors, lack punctuation, and do not distinguish between when Sam is speaking in his own words and quoting someone else. They do not lend themselves to literal reading, and are only intended to make it easier to explore podcast content.</p>
-                    <p>Currently, because the API does not differentiate between the voices of multiple speakers, I've only transcribed those podcasts where Sam is speaking alone (without a guest).</p>
+                    <p>This app allows you to search through transcripts of episodes from <strong>Sam Harris</strong>'s <em><a href="https://www.samharris.org/podcast">Waking Up</a></em> podcast.</p>
+                    <p>Most of these transcripts have been generated directly from the original audio using Google's <a href="https://cloud.google.com/speech/">Cloud Speech API</a> and the IBM Watson <a href="https://www.ibm.com/watson/developercloud/speech-to-text.html">Speech to Text API</a>. The speech recognition technology &mdash; while powerful &mdash; is imperfect; these transcripts contain numerous errors, lack punctuation, and cannot distinguish between when a speaker is speaking in his or her own words and quoting someone else. They do not lend themselves to literal reading, and are only intended to make it easier to explore podcast content.</p>
+                    <p><strong>May 2017</strong>: I have not transcribed all podcasts yet. I continue to experiment with the APIs to improve transcript quality.</p>
                     <p>See this project on <a href="https://github.com/alexchao/sam-search">GitHub</a>. This app is neither endorsed by nor affiliated with Sam Harris.</p>
                     <p className="pop-up-button"><a href="#" onClick={(e) => {this.props.handleCloseInfoClick(e);}}>CLOSE</a></p>
                 </div>
