@@ -25,6 +25,11 @@ a:hover, a:active, a:focus {
   text-decoration: underline;
 }
 
+a.hit-container:hover, a.hit-container:active, a.hit-container:focus {
+  text-decoration: none;
+  background-color: #e0f0ff;
+}
+
 #page-container {
   width: 100%;
 }
@@ -125,11 +130,6 @@ a:hover, a:active, a:focus {
   line-height: 150%;
 }
 
-.view-link {
-  font-variant: small-caps;
-  margin: 0 0 0 0.5em;
-}
-
 #hits-box {
   position: absolute;
   top: -0.7em;
@@ -143,10 +143,11 @@ a:hover, a:active, a:focus {
 
 #hits-container {
   max-height: 350px;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .hit-container {
+  display: block;
   margin: 0;
   padding: 0.5em 1em;
   border-top: 1px solid #e0e0e0;
@@ -182,12 +183,14 @@ a:hover, a:active, a:focus {
 .hit-container h3 {
   margin: 0 0 0.5em;
   font-size: medium;
+  color: #9faab2;
 }
 
 .hit-container .snippet {
   margin: 0;
   font-size: small;
   line-height: 150%;
+  color: #000;
 }
 
 @-webkit-keyframes fadeIt {

@@ -19,21 +19,17 @@ class DocResult extends Component {
     render() {
         const staticUri = Util.makeStaticUri(this.props.hit.id);
         return (
-            <div className="hit-container">
-                <h3>
-                    {this.props.hit.title}
-                    <a
-                     className="view-link"
-                     data-chunk-id={this.props.hit.chunk_id}
-                     onClick={(e) => {this.props.handleLinkClick(e);}}
-                     href={staticUri}>view</a>
-                </h3>
+            <a className="hit-container"
+               data-chunk-id={this.props.hit.chunk_id}
+               onClick={(e) => {this.props.handleLinkClick(e);}}
+               href={staticUri}>
+                <h3>{this.props.hit.title}</h3>
                 <p className="snippet">
                     <span className="hit-name">
                         <Snippet attributeName="content" hit={this.props.hit} />
                     </span>
                 </p>
-            </div>
+            </a>
         );
     }
 }
@@ -97,8 +93,8 @@ class Search extends Component {
 
     handleLinkClick(e) {
         e.preventDefault();
-        const uri = e.target;
-        const chunkId = e.target.dataset.chunkId;
+        const uri = e.currentTarget.href;
+        const chunkId = e.currentTarget.dataset.chunkId;
 
         const that = this;
         fetch(uri).then(function(response) {
