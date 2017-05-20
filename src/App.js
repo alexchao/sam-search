@@ -140,12 +140,14 @@ class Search extends Component {
             <div id="page-container">
                 <div id="search-bar">
                     <div id="search-box-container" className="group">
-                        <SearchBox translations={{ placeholder: "trump, liberals, etc." }} />
                         <div className="header-container">
                             <h1>
                                 Search <em>Waking Up</em> transcripts
                             </h1>
-                            <span className="more-info-link">( <a href="#" onClick={(e) => {this.handleOpenInfoClick(e);}}>?</a> )</span>
+                        </div>
+                        <SearchBox translations={{ placeholder: "trump, liberals, etc." }} />
+                        <div className="more-info-link">
+                            <a href="#" onClick={(e) => {this.handleOpenInfoClick(e);}}>?</a>
                         </div>
                     </div>
                     {hits}

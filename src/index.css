@@ -48,6 +48,7 @@ a:hover, a:active, a:focus {
 
 .ais-SearchBox__root {
   float: left;
+  margin: 0 0 0 1em;
 }
 
 #search-box-container .header-container {
@@ -57,9 +58,9 @@ a:hover, a:active, a:focus {
 }
 
 #search-box-container h1 {
-  display: inline;
   font-size: 120%;
   font-weight: normal;
+  margin: 0;
 }
 
 #search-box-container h1 em {
@@ -68,12 +69,13 @@ a:hover, a:active, a:focus {
 }
 
 #search-box-container .more-info-link {
-  margin: 0 0 0 1em;
+  float: left;
+  padding: 0.5em 0em 0em 1em;
+  font-weight: bold;
 }
 
-
 #search-box-container .more-info-link a {
-  font-weight: bold;
+  font-size: 150%;
 }
 
 .info-box-container {
