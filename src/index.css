@@ -27,7 +27,7 @@ a:hover, a:active, a:focus {
 
 a.hit-container:hover, a.hit-container:active, a.hit-container:focus {
   text-decoration: none;
-  background-color: #e0f0ff;
+  background-color: #f2f9ff;
 }
 
 #page-container {
