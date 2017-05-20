@@ -69,6 +69,7 @@ a.hit-container:hover, a.hit-container:active, a.hit-container:focus {
 }
 
 #search-box-container h1 em {
+  font-style: normal;
   font-weight: bold;
   color: #627787;
 }
