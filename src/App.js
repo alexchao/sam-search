@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 
+import {createConnector} from 'react-instantsearch';
 import {InstantSearch, Configure, Hits, SearchBox, Snippet} from 'react-instantsearch/dom';
 
 
@@ -53,7 +54,8 @@ class InfoBox extends Component {
 }
 
 
-class Search extends Component {
+
+class _Search extends Component {
 
     constructor(props) {
         super(props);
@@ -106,15 +108,26 @@ class Search extends Component {
         this.props.handleHideResults();
     }
 
+    renderResults() {
+        if (this.props.noResults) {
+            return (<div className="no-results">No transcripts found for query: <em>{this.props.query}</em></div>);
+        }
+
+        return (
+            <Hits hitComponent={
+                ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
+             } />
+        );
+    }
+
     render() {
         let hits = null, infoBox = null;
         if (this.props.showResults) {
+            let resultComponent = this.renderResults();
             hits = (
                 <div id="hits-box" className="pop-up">
                     <div id="hits-container">
-                        <Hits hitComponent={
-                            ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
-                         } />
+                        {resultComponent}
                     </div>
                     <div id="search-footer-container">
                         <span id="search-footer">
@@ -155,6 +168,19 @@ class Search extends Component {
         );
     }
 }
+
+
+/**
+ * Injects additional query information (query string and whether there are
+ * any search results) into the Search component for conditional display.
+ */
+const Search = createConnector({
+    displayName: 'ConditionalResults',
+    getProvidedProps(props, searchState, searchResults) {
+      const noResults = searchResults.results ? searchResults.results.nbHits === 0 : false;
+      return {query: searchState.query, noResults};
+    },
+})(_Search);
 
 
 class App extends Component {
