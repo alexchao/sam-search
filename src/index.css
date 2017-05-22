@@ -34,15 +34,15 @@ a.hit-container:hover, a.hit-container:active, a.hit-container:focus {
   width: 100%;
 }
 
-#search-bar {
+.search-bar {
   position: fixed;
   width: 100%;
   background-color: #fff;
   box-shadow: 0 1px 1px 0 rgba(85,95,110,.2);
 }
 
-#search-box-container, #page-body, #hits-section {
-  width: 75%;
+.search-bar-inner, #page-body, #hits-section {
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -53,35 +53,43 @@ a.hit-container:hover, a.hit-container:active, a.hit-container:focus {
 
 .ais-SearchBox__root {
   float: left;
-  margin: 0 0 0 1em;
+  margin: 0 1em 0 0;
 }
 
-#search-box-container .header-container {
+.search-bar-inner .header-container {
   float: left;
   color: #9faab2;
-  padding: 0.7em 0em 0em 1em;
+  padding: 0.7em 0em;
+  margin: 0 1em 0 0;
 }
 
-#search-box-container h1 {
+.search-bar-inner h1 {
   font-size: 120%;
   font-weight: normal;
   margin: 0;
 }
 
-#search-box-container h1 em {
+.search-bar-inner h1 em {
   font-style: normal;
   font-weight: bold;
   color: #627787;
 }
 
-#search-box-container .more-info-link {
+.search-bar-inner .more-info-link {
   float: left;
-  padding: 0.5em 0em 0em 1em;
+  padding: 0.5em 0;
   font-weight: bold;
 }
 
-#search-box-container .more-info-link a {
+.search-bar-inner .more-info-link a {
   font-size: 150%;
+}
+
+.search-box-container {
+  float: left;
+  position: relative;
+  width: 500px;
+  max-width: 100%;
 }
 
 .info-box-container {
@@ -102,44 +110,29 @@ a.hit-container:hover, a.hit-container:active, a.hit-container:focus {
   line-height: 150%;
 }
 
-#hits-section {
-  position: relative;
-}
-
-#search-box-container {
+.search-bar-inner {
   padding: 1.5em 0;
 }
 
 #page-body {
-  padding: 7em 0 0;
-}
-
-.transcript-container {
-  padding: 3em;
-  background-color: #FFFBEE;
-  border-top: 1px solid #FFFDF6;
-  border-left: 1px solid #FFFDF6;
-  box-shadow: 0 2px 5px 0 rgba(85,95,110,.4);
-  color: #74716A;
+  padding: 7em 0 3em;
 }
 
 .transcript-container h1 {
-  color: #B4AE97;
+  color: #909090;
 }
 
 .transcript-container p {
+  color: #606060;
   line-height: 150%;
 }
 
 #hits-box {
   position: absolute;
-  top: -0.7em;
-  left: -1em;
-  width: 75%;
+  top: 3.5em;
+  left: 0;
   margin: 0;
   padding: 0 0 2em;
-  max-width: 600px;
-  max-height: 350px;
 }
 
 #hits-container {

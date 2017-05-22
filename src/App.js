@@ -110,19 +110,17 @@ class Search extends Component {
         let hits = null, infoBox = null;
         if (this.props.showResults) {
             hits = (
-                <div id="hits-section">
-                    <div id="hits-box" className="pop-up">
-                        <div id="hits-container">
-                            <Hits hitComponent={
-                                ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
-                             } />
-                        </div>
-                        <div id="search-footer-container">
-                            <span id="search-footer">
-                                powered by
-                                <a href="https://www.algolia.com/"><img alt="Algolia logo" src={process.env.PUBLIC_URL + '/img/algolia.svg'} height="17" width="54" /></a>
-                            </span>
-                        </div>
+                <div id="hits-box" className="pop-up">
+                    <div id="hits-container">
+                        <Hits hitComponent={
+                            ({hit}) => <DocResult hit={hit} handleLinkClick={this.handleLinkClick.bind(this)} />
+                         } />
+                    </div>
+                    <div id="search-footer-container">
+                        <span id="search-footer">
+                            powered by
+                            <a href="https://www.algolia.com/"><img alt="Algolia logo" src={process.env.PUBLIC_URL + '/img/algolia.svg'} height="17" width="54" /></a>
+                        </span>
                     </div>
                 </div>
             );
@@ -134,19 +132,21 @@ class Search extends Component {
 
         return (
             <div id="page-container">
-                <div id="search-bar">
-                    <div id="search-box-container" className="group">
+                <div className="search-bar">
+                    <div className="search-bar-inner group">
                         <div className="header-container">
                             <h1>
                                 Search <em>Waking Up</em> transcripts
                             </h1>
                         </div>
-                        <SearchBox translations={{ placeholder: "trump, liberals, etc." }} />
-                        <div className="more-info-link">
-                            <a href="#" onClick={(e) => {this.handleOpenInfoClick(e);}}>?</a>
+                        <div className="search-box-container">
+                            <SearchBox translations={{ placeholder: "trump, liberals, etc." }} />
+                            {hits}
+                            <div className="more-info-link">
+                                <a href="#" onClick={(e) => {this.handleOpenInfoClick(e);}}>?</a>
+                            </div>
                         </div>
                     </div>
-                    {hits}
                     {infoBox}
                 </div>
                 {/* derp */}
