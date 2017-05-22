@@ -93,6 +93,10 @@ class _Search extends Component {
         }, 4000);
     }
 
+    handleSearchReset() {
+        this.setState({ pageContent: null });
+    }
+
     handleLinkClick(e) {
         e.preventDefault();
         const uri = e.currentTarget.href;
@@ -153,7 +157,7 @@ class _Search extends Component {
                             </h1>
                         </div>
                         <div className="search-box-container">
-                            <SearchBox translations={{ placeholder: "trump, liberals, etc." }} />
+                            <SearchBox onReset={this.handleSearchReset.bind(this)} translations={{ placeholder: "trump, liberals, etc." }} />
                             {hits}
                             <div className="more-info-link">
                                 <a href="#" onClick={(e) => {this.handleOpenInfoClick(e);}}>?</a>
